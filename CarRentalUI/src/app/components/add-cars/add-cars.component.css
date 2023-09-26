@@ -1,0 +1,16 @@
+.container{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.card{
+  min-width: 70vw;
+ border-radius: 20px;
+  box-shadow:5px 5px 10px rgb(218,218,218);
+}
+
+.default{
+  margin-top: 3.5rem;
+}
+

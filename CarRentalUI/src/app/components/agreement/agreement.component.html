@@ -1,0 +1,78 @@
+<div class="default">
+  <div class="d-flex justify-content-center m-3">
+    <h2>Rental Agreement</h2>
+  </div>
+
+  <div class="container" *ngIf="car">
+    <div class="row">
+      <div class="card">
+        <div class="card-body">
+          <div class="my-1">
+            <p>
+              This agreement is generated on <strong>{{ date }}</strong> by you.
+            </p>
+          </div>
+          <div class="card-body">
+            <h4>Car Details:</h4>
+          </div>
+          <div class="card-body">
+            <p>The car which you hereby agrees to rent is:</p>
+            <ul>
+              <li><strong>Brand :</strong> {{ car.maker }}</li>
+              <li><strong>Model :</strong> {{ car.model }}</li>
+              <li>
+                <strong>Rent Price (*per day) :</strong> {{ car.rentalPrice }}
+              </li>
+            </ul>
+          </div>
+        </div>
+        <form [formGroup]="rentalForm">
+          <div class="card-body">
+            <div class="mb-3 form-group">
+              <label for="duration" class="form-label"
+                >Duration (*in days)</label
+              >
+              <input
+                type="number"
+                min="1"
+                (input)="priceCal($event.target)"
+                formControlName="duration"
+                class="form-control"
+                id="duration"
+              />
+              <span class="text-danger"
+                  *ngIf="Duration.errors?.['required'] && (Duration.dirty || Duration.touched)"
+                  >*Please Enter the duration of rent</span
+                >
+            </div>
+            <div class="mb-3">
+              <label for="totalPrice" class="form-label"
+                >Total Price : {{ totalPrice }}
+              </label>
+            </div>
+            <div class="msg text-danger my-2">{{ msg }}</div>
+          </div>
+        </form>
+        <div class="card-body">
+          <p class="mb-3">
+            <input type="checkbox" class="checkbox" name="checkbox1" (change)="enableDisable()">
+            I {{ fullName }} hereby agrees that this agreement terminates upon
+            the duration specified above. Notwithstanding anything to the
+            country in this agreement or any Exhibits, either Party may
+            terminate this agreement before accepting this agreement. Once you
+            accept this agreement, than the refund of Rental Price will not be
+            claimed.
+          </p>
+          <button
+            type="submit"
+            (click)="onAccept()"
+            class="btn btn-sm btn-success"
+            [disabled]="isDisabled"
+          >
+            Accept
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

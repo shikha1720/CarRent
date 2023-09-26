@@ -1,0 +1,37 @@
+.default{
+    margin-top: 3.5rem;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid black;
+    border-radius: 15px;
+    margin-bottom: 10px;
+    align-items: center;
+  }
+
+.left-heading {
+    margin: 0;
+  }
+  
+  .right-heading {
+    margin: 0;
+  }
+  
+  .available{
+    color: green;
+  }
+  
+  .expired{
+    color: red;
+  }
+
+  .card-body{
+    flex: 1;
+    padding:20px;
+  }
+
+  .head{
+    color:gray;
+  }

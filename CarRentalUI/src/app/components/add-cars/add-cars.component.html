@@ -1,0 +1,104 @@
+<div class="default">
+  <div class="d-flex justify-content-center m-2">
+    <h1>Add Car Details</h1>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="card">
+        <form [formGroup]="addCarsForm">
+          <div class="card-body">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Car Maker</label
+              >
+              <input
+                type="text"
+                formControlName="maker"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Eg. Tata "
+              />
+              <span class="text-danger"
+                  *ngIf="Maker.errors?.['required'] && (Maker.dirty || Maker.touched)"
+                  >*Please Enter the brand</span
+                >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Car Model</label
+              >
+              <input
+                type="text"
+                formControlName="model"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Eg. Tiago"
+              />
+              <span class="text-danger"
+                  *ngIf="Model.errors?.['required'] && (Model.dirty || Model.touched)"
+                  >*Please Enter the model</span
+                >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Image URL</label
+              >
+              <input
+                type="text"
+                formControlName="imageURL"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder="Eg. Image/url.jpg"
+              />
+              <span class="text-danger"
+                  *ngIf="ImageURL.errors?.['required'] && (ImageURL.dirty || ImageURL.touched)"
+                  >*Please Enter the image link</span
+                >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label"
+                >Rental Price</label
+              >
+              <input
+                type="number"
+                formControlName="rentalPrice"
+                class="form-control"
+                aria-describedby="emailHelp"
+                min=1
+                placeholder="Eg. 3500"
+              />
+              <span class="text-danger"
+                  *ngIf="RentalPrice.errors?.['required'] && (RentalPrice.dirty || RentalPrice.touched)"
+                  >*Please Enter the rent price</span
+                >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">About</label>
+              <input
+                type="text"
+                formControlName="about"
+                class="form-control"
+                aria-describedby="emailHelp"
+                placeholder="About car"
+              />
+              <span class="text-danger"
+                  *ngIf="About.errors?.['required'] && (About.dirty || About.touched)"
+                  >*Please Enter the brand</span
+                >
+            </div>
+            <div class="msg text-danger my-2">{{msg}}</div>
+            <button
+              (click)="onClickAddCars()"
+              type="submit"
+              class="btn btn-primary mx-2"
+            >
+              Add
+            </button>
+            <button type="reset" class="btn btn-danger">Clear</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

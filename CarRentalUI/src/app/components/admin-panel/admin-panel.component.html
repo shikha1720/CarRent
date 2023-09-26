@@ -1,0 +1,121 @@
+<div class="default">
+  <div class="d-flex justify-content-center m-2">
+    <h1 *ngIf="allAgreements.length > 0">All agreements</h1>
+    <h1 class="align-items-center" *ngIf="allAgreements.length == 0">
+      No Agreement to show.
+    </h1>
+  </div>
+
+  <!-- // Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Update rental duration
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="updateDurationForm">
+            <label class="form-label">Updated duration</label>
+            <input
+              type="number"
+              formControlName="updatedDuration"
+              class="form-control"
+              min="1"
+            />
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-dismiss="modal"
+            (click)="saveChanges()"
+          >
+            Save changes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container my-2">
+    <div class="row">
+      <div class="card my-2 w-100" *ngFor="let agreement of allAgreements">
+        <div class="card-header my-2">
+          <h4 class="left-heading">
+            Unique Agreement Number #{{ agreement.id }}
+          </h4>
+
+          <h5 class="right-heading expired" *ngIf="!agreement.agreementStatus">
+            Agreement Expired
+          </h5>
+          <h5 class="right-heading available" *ngIf="agreement.agreementStatus">
+            Agreement Available
+          </h5>
+        </div>
+        <div class="card-body row">
+          <div class="col-sm-4">
+            <h3 id="detail">Car details :</h3>
+            <h6><strong class="head">Brand : </strong>{{ agreement.maker }}</h6>
+            <h6><strong class="head">Model : </strong>{{ agreement.model }}</h6>
+            <h6><strong class="head">Booked On : </strong>{{ agreement.startDate | slice : 4 : 15 }}</h6>
+            <h6><strong class="head">Duration : </strong>{{ agreement.duration }} Days</h6>
+          </div>
+          <div class="col-sm-4">
+            <h3 id="detail">Customer details :</h3>
+            <h6><strong class="head">Name : </strong>{{ agreement.firstName }} {{ agreement.lastName }}</h6>
+            <h6><strong class="head">Email : </strong>{{ agreement.email }}</h6>
+            <h6><strong class="head">Username : </strong>{{ agreement.username }}</h6>
+          </div>
+
+          <div class="actions col-sm-4">
+            <button
+              class="btn btn-primary"
+              *ngIf="agreement.agreementStatus && !agreement.isRented"
+              (click)="carInspected(agreement.carId, agreement.id)"
+            >
+              Return requested
+            </button>
+            <button
+              class="btn btn-danger"
+              (click)="deleteAgreement(agreement.id)"
+            >
+              Delete agreement
+            </button>
+            <button
+              type="button"
+              *ngIf="agreement.agreementStatus"
+              class="btn btn-warning"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              (click)="agrId = agreement.id"
+            >
+              Update agreement
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

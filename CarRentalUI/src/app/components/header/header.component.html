@@ -1,0 +1,22 @@
+<nav class="navbar fixed-top bg-dark text-white">
+  <div class="container-fluid">
+    <a class="navbar-brand text-light" routerLink="dashboard"> Car Rental </a>
+    <div class="custom">
+    <a *ngIf="isLoggedIn" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Hello, {{fullName}} 
+    </a>
+    <ul *ngIf="role=='user'" class="dropdown-menu dropdown-center">
+      <li><a class="dropdown-item" href="#"><i class="fa-solid fa-house-chimney"></i> Home</a></li>
+      <li><a class="dropdown-item" href="/myAgreement"><i class="fa-solid fa-file-lines"></i> My Agreements</a></li>
+      <li (click)="logout()"><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+
+    <ul *ngIf="role=='Admin'" class="dropdown-menu dropdown-center">
+      <li><a class="dropdown-item" href="/admin"><i class="fa-solid fa-file-pen"></i> See All Agreements</a></li>
+      <li><a class="dropdown-item" routerLink="/addCars"><i class="fa-solid fa-plus"></i> Add New Car</a></li>
+      <li (click)="logout()"><a class="dropdown-item" href="#"><i class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+    </ul>
+    <button class="btn btn-outline-light" *ngIf="!isLoggedIn " (click)="onLoginClick()">Login</button>
+  </div>
+  </div>
+</nav>
